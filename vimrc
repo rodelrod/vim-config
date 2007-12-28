@@ -40,9 +40,10 @@ set tabstop=4
 set shiftwidth=4
 set autoindent
 set fileencodings=ucs-bom,utf-8,latin1
-"set guioptions-=T 	"gets rid of the toolbar
+set guioptions-=T 	"gets rid of the toolbar
 set vb t_vb=		"replaces beep for flash for wrong commands
 "set virtualedit=all 
+set modeline
 "}}}
 
 "-------------------------------------------------------
