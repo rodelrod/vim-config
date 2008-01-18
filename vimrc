@@ -8,6 +8,7 @@
 "-------------------------------------------------------
 if has('win32')
 	source $vim/_vimrc
+	let g:pydoc_cmd = 'python c:/Python24/Lib/pydoc.py'
 else
 	source $VIM/vimrc
 	if !has('gui_running')
@@ -26,6 +27,7 @@ else
 		" (3) send xterm-256color as term string
 		colorscheme inkpot  
 	endif
+    let g:pydoc_cmd = "/usr/bin/pydoc" 
 endif
 "}}}
 
@@ -132,12 +134,46 @@ imap <silent> <C-L> <esc>:call GoOutOfBlock()<cr>a
 "}}}1
 
 "-------------------------------------------------------
+" Tabbed browsing {{{
+"-------------------------------------------------------
+" RER 18/01/2008
+
+map <m-\> :tabnew<cr>
+imap <m-\> <Esc>:tabnew<cr>
+" quick access to tabs
+map <m-1> 1gt
+map <m-2> 2gt
+map <m-3> 3gt
+map <m-4> 4gt
+map <m-5> 5gt
+map <m-6> 6gt
+map <m-7> 7gt
+map <m-8> 8gt
+map <m-9> 9gt
+map <m-0> 10gt
+map <m-0> gT
+map <m-'> gt
+imap <m-1> <Esc>1gt
+imap <m-2> <Esc>2gt
+imap <m-3> <Esc>3gt
+imap <m-4> <Esc>4gt
+imap <m-5> <Esc>5gt
+imap <m-6> <Esc>6gt
+imap <m-7> <Esc>7gt
+imap <m-8> <Esc>8gt
+imap <m-9> <Esc>9gt
+imap <m-0> <Esc>gT
+imap <m-'> <Esc>gt
+
+"}}}
+
+"-------------------------------------------------------
 " OTHER MAPPINGS {{{
 "-------------------------------------------------------
 "Map ESCAPE into something within reach
 " (remap Caps-Lock to Control using AutoHotKey for maximum punch)
 " Linux note: On linux, <C-Space> == <Nul>
-if has('unix')
+if has('unix') && !has('gui_running')
 	imap <Nul> <Esc>
 	vmap <Nul> <Esc>
 else
@@ -157,7 +193,7 @@ nmap <F3> :nohls<CR>h
 
 " <s-tab> auto-complete
 " 19/05/2004
-imap <s-tab> <C-N>
+"imap <s-tab> <C-N>
 
 " <F12> edit _vimrc
 " 08/11/2006 Não preciso disto, tenho o menu Edition\Startup Settings

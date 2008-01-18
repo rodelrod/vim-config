@@ -5,6 +5,7 @@
 " colour mode). It won't work in 8/16 colour terminals.
 "
 " To use a black background, :let g:inkpot_black_background = 1
+" 08/01/2008 RER: added some highlight classes for python's sake in GUI mode
 
 set background=dark
 hi clear
@@ -41,14 +42,15 @@ fun! <SID>X(a)
 endfun
 
 if ! exists("g:inkpot_black_background")
-    let g:inkpot_black_background = 0
+    let g:inkpot_black_background = 1
 endif
 
 if has("gui_running")
     if ! g:inkpot_black_background
         hi Normal         gui=NONE   guifg=#cfbfad   guibg=#1e1e27
     else
-        hi Normal         gui=NONE   guifg=#cfbfad   guibg=#000000
+"        hi Normal         gui=NONE   guifg=#cfbfad   guibg=#000000
+        hi Normal         gui=NONE   guifg=#ffffff   guibg=#000000
     endif
 
     hi IncSearch      gui=BOLD   guifg=#303030   guibg=#cd8b60
@@ -93,7 +95,7 @@ if has("gui_running")
 
     hi Comment        gui=NONE   guifg=#cd8b00   guibg=NONE
     hi Constant       gui=NONE   guifg=#ffcd8b   guibg=NONE
-    hi String         gui=NONE   guifg=#ffcd8b   guibg=#404040
+    hi String         gui=NONE   guifg=#ffcd8b   guibg=#202020
     hi Error          gui=NONE   guifg=#ffffff   guibg=#6e2e2e
     hi Identifier     gui=NONE   guifg=#ff8bff   guibg=NONE
     hi Ignore         gui=NONE
@@ -102,10 +104,21 @@ if has("gui_running")
     hi Special        gui=NONE   guifg=#c080d0   guibg=NONE
     hi SpecialChar    gui=NONE   guifg=#c080d0   guibg=#404040
     hi Statement      gui=NONE   guifg=#808bed   guibg=NONE
+"    hi Statement      gui=NONE   guifg=#00aaaa   guibg=NONE
     hi Todo           gui=BOLD   guifg=#303030   guibg=#d0a060
     hi Type           gui=NONE   guifg=#ff8bff   guibg=NONE
     hi Underlined     gui=BOLD   guifg=#df9f2d   guibg=NONE
-    hi TaglistTagName gui=BOLD   guifg=#808bed   guibg=NONE
+    " Added for Python:
+    hi Function       gui=NONE   guifg=#b06060   guibg=NONE
+    hi Conditional    gui=NONE   guifg=#70c0c0   guibg=NONE
+    hi Repeat         gui=NONE   guifg=#70c0c0   guibg=NONE
+    hi Operator       gui=NONE   guifg=#70c0c0   guibg=NONE
+    hi Exception      gui=NONE   guifg=#70c0c0   guibg=NONE
+    " Added for TagList:
+"    hi TagListTagName gui=BOLD   guifg=#808bed   guibg=NONE
+"    hi TagListTagScope gui=NONE   guifg=#409090   guibg=NONE
+"    hi TagListFileName gui=NONE   guifg=#ffffff   guibg=#707070
+
 
     hi perlSpecialMatch   gui=NONE guifg=#c080d0   guibg=#404040
     hi perlSpecialString  gui=NONE guifg=#c080d0   guibg=#404040

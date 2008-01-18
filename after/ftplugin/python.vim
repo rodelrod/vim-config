@@ -48,9 +48,13 @@ vmap ]>   >
 map  ]c   :call PythonSelectObject("class")<CR>
 map  ]f   :call PythonSelectObject("function")<CR>
 
-map  ]<up>    :call PythonNextLine(-1)<CR>
-map  ]<down>  :call PythonNextLine(1)<CR>
+"map  ]<up>    :call PythonNextLine(-1)<CR>
+"map  ]<down>  :call PythonNextLine(1)<CR>
 " You may prefer use <s-up> and <s-down>... :-)
+" 2008-01-04 actually I do :)
+" <s-up> is caught by xfce4-terminal, using <c-up> instead
+map  <c-up>    :call PythonNextLine(-1)<CR>
+map  <c-down>  :call PythonNextLine(1)<CR>
 
 
 
