@@ -181,9 +181,11 @@ else
 	vmap <C-space> <Esc>
 endif
 
-" Insert date and time stamp <F2>
-imap <F11> <C-R>=strftime("%d/%m/%Y")<CR>
-nmap <F11> i<C-R>=strftime("%d/%m/%Y")<CR><Esc> 
+" Insert date and time stamp 
+" 28/02/2008 changed from <F11> to <S-F11> because <F11> is taken over
+" by the terminal in xfce-terminal
+imap <S-F11> <C-R>=strftime("%d/%m/%Y")<CR>
+nmap <S-F11> i<C-R>=strftime("%d/%m/%Y")<CR><Esc> 
 
 "  Remove search results highlighting
 " 'a' and 'h' return to original cursor position
@@ -227,11 +229,8 @@ endif
 let g:winManagerWindowLayout = 'FileExplorer,TagList|BufExplorer'
 nnoremap <silent> <S-F12> :Tlist<CR>
 
-" Project settings
-" ----------------
-"  g flag: map <F12> to toggle project window
-"  The other flags are the default settings
-let g:proj_flags ='gimst'
+" NERDTree (useful when using tabs instead of WinManager)
+map <c-w><c-e> :NERDTreeToggle<cr>
 
 "}}}
 
