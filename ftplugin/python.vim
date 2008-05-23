@@ -31,15 +31,9 @@ def SetBreakpoint():
     strWhite = re.search( '^(\s*)', strLine).group(1)
  
     vim.current.buffer.append(
-       "%(space)spdb.set_trace() %(mark)s Breakpoint %(mark)s" %
-         {'space':strWhite, 'mark': '#' * 30}, nLine - 1)
+       "%(space)simport pdb; pdb.set_trace() %(mark)s Breakpoint %(mark)s" %
+         {'space':strWhite, 'mark': '#' * 15}, nLine - 1)
  
-    for strLine in vim.current.buffer:
-        if strLine == "import pdb":
-            break
-    else:
-        vim.current.buffer.append( 'import pdb', 0)
-        vim.command( 'normal j1')
  
 def RemoveBreakpoints():
     import re
@@ -49,7 +43,7 @@ def RemoveBreakpoints():
     nLines = []
     nLine = 1
     for strLine in vim.current.buffer:
-        if strLine == 'import pdb' or strLine.lstrip()[:15] == 'pdb.set_trace()':
+        if strLine.lstrip()[:27] == 'import pdb; pdb.set_trace()':
             nLines.append( nLine)
         nLine += 1
  
