@@ -181,6 +181,11 @@ else
 	vmap <C-space> <Esc>
 endif
 
+"Map copy-paste to OS clipboard using shift-ctrl-c and shift-ctrl-v
+vmap <S-C-C> "+y
+imap <S-C-V> <Esc>"+p
+vmap <S-C-V> "+p
+
 " Insert date and time stamp 
 " 28/02/2008 changed from <F11> to <S-F11> because <F11> is taken over
 " by the terminal in xfce-terminal
