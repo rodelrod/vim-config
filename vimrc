@@ -16,15 +16,21 @@ else
 		" mode, to preserve mouse copy-paste on the terminal
 		set mouse=nh
 	endif
-	if $TERM == "screen" 
+	if $TERM == "screen"
 		" Screen sends terminal codes transparently, so you need to tell
 		" vim what is your base terminal (I was having a bug with S-<Fx>)
 		set term=xterm
 		colorscheme xterm16  " 16-colors colorsheme 
-	elseif $TERM == "xterm-256color"
+	elseif $TERM == "xterm-256color" 
 		" 256-colors colorscheme for putty
 		" you have to (1) use putty 0.49, (2) install ncurses-term on debian, 
-		" (3) send xterm-256color as term string
+		" (3) send xterm-256color as term string 
+		" (the term string is hard-coded for this one, we can't set it)
+		colorscheme inkpot  
+	elseif $COLORTERM == "gnome-terminal"
+		" 256-colors colorscheme for gnome-terminal
+		" (the term string is hard-coded for this one, we can't set it)
+		set t_Co=256
 		colorscheme inkpot  
 	endif
     let g:pydoc_cmd = "/usr/bin/pydoc" 
