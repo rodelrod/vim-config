@@ -34,6 +34,8 @@ else
 		colorscheme inkpot  
 	endif
     let g:pydoc_cmd = "/usr/bin/pydoc" 
+	" filetype plugin was disabled by default in Debian/Ubuntu
+	filetype plugin on
 endif
 "}}}
 
