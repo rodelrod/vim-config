@@ -1062,6 +1062,9 @@ function! <SID>ToggleWindowsManager()
 		call s:CloseWindowsManager()
 	else
 		call s:StartWindowsManager()
+		"NERD_tree need this. Open a blank window should close.
+"		exe '1wincmd w'
+		"exe 'q'
 	end
 endfunction
 

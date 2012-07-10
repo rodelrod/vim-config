@@ -1,13 +1,17 @@
 " -*- vim -*-
-" FILE: python.vim
-" LAST MODIFICATION: 2006-08-18 07:30
+" FILE: python_fn.vim
+" LAST MODIFICATION: 2008-08-28 8:19pm
 " (C) Copyright 2001-2005 Mikael Berthe <bmikael@lists.lilotux.net>
-" Version: 1.9
+" Maintained by Jon Franklin <jvfranklin@gmail.com>
+" Version: 1.13
 
 " USAGE:
 "
-" Just source this script when editing Python files.
-" Example: au FileType python source ~me/.vim/scripts/python.vim
+" Save this file to $VIMFILES/ftplugin/python.vim. You can have multiple
+" python ftplugins by creating $VIMFILES/ftplugin/python and saving your
+" ftplugins in that directory. If saving this to the global ftplugin 
+" directory, this is the recommended method, since vim ships with an
+" ftplugin/python.vim file already.
 " You can set the global variable "g:py_select_leading_comments" to 0
 " if you don't want to select comments preceding a declaration (these
 " are usually the description of the function/class).
@@ -20,41 +24,65 @@
 " shift commands...
 "
 " REQUIREMENTS:
-" vim (>= 6)
+" vim (>= 7)
 "
 " Shortcuts:
-"   [[      -- Jump to beginning of block
-"   ]]      -- Jump to end of block
+"   ]t      -- Jump to beginning of block
+"   ]e      -- Jump to end of block
 "   ]v      -- Select (Visual Line Mode) block
 "   ]<      -- Shift block to left
 "   ]>      -- Shift block to right
+"   ]#      -- Comment selection
+"   ]u      -- Uncomment selection
 "   ]c      -- Select current/previous class
-"   ]f      -- Select current/previous function
+"   ]d      -- Select current/previous function
 "   ]<up>   -- Jump to previous line with the same/lower indentation
 "   ]<down> -- Jump to next line with the same/lower indentation
 
+" Only do this when not done yet for this buffer
+if exists("b:loaded_py_ftplugin")
+  finish
+endif
+let b:loaded_py_ftplugin = 1
 
-map  [[   :PBoB<CR>
-vmap [[   :<C-U>PBoB<CR>m'gv``
-map  ]]   :PEoB<CR>
-vmap ]]   :<C-U>PEoB<CR>m'gv``
+map  ]t   :PBoB<CR>
+vmap ]t   :<C-U>PBOB<CR>m'gv``
+map  ]e   :PEoB<CR>
+vmap ]e   :<C-U>PEoB<CR>m'gv``
 
-map  ]v   [[V]]
-map  ]<   [[V]]<
+map  ]v   ]tV]e
+map  ]<   ]tV]e<
 vmap ]<   <
-map  ]>   [[V]]>
+map  ]>   ]tV]e>
 vmap ]>   >
 
-map  ]c   :call PythonSelectObject("class")<CR>
-map  ]f   :call PythonSelectObject("function")<CR>
+map  ]#   :call PythonCommentSelection()<CR>
+vmap ]#   :call PythonCommentSelection()<CR>
+map  ]u   :call PythonUncommentSelection()<CR>
+vmap ]u   :call PythonUncommentSelection()<CR>
 
-"map  ]<up>    :call PythonNextLine(-1)<CR>
-"map  ]<down>  :call PythonNextLine(1)<CR>
+map  ]c   :call PythonSelectObject("class")<CR>
+map  ]d   :call PythonSelectObject("function")<CR>
+
+map  ]<up>    :call PythonNextLine(-1)<CR>
+map  ]<down>  :call PythonNextLine(1)<CR>
 " You may prefer use <s-up> and <s-down>... :-)
-" 2008-01-04 actually I do :)
-" <s-up> is caught by xfce4-terminal, using <c-up> instead
-map  <c-up>    :call PythonNextLine(-1)<CR>
-map  <c-down>  :call PythonNextLine(1)<CR>
+
+" jump to previous class
+map  ]J   :call PythonDec("class", -1)<CR>
+vmap ]J   :call PythonDec("class", -1)<CR>
+
+" jump to next class
+map  ]j   :call PythonDec("class", 1)<CR>
+vmap ]j   :call PythonDec("class", 1)<CR>
+
+" jump to previous function
+map  ]F   :call PythonDec("function", -1)<CR>
+vmap ]F   :call PythonDec("function", -1)<CR>
+
+" jump to next function
+map  ]f   :call PythonDec("function", 1)<CR>
+vmap ]f   :call PythonDec("function", 1)<CR>
 
 
 
@@ -62,10 +90,10 @@ map  <c-down>  :call PythonNextLine(1)<CR>
 nmenu <silent> &Python.Update\ IM-Python\ Menu 
     \:call UpdateMenu()<CR>
 nmenu &Python.-Sep1- :
-nmenu <silent> &Python.Beginning\ of\ Block<Tab>[[ 
-    \[[
-nmenu <silent> &Python.End\ of\ Block<Tab>]] 
-    \]]
+nmenu <silent> &Python.Beginning\ of\ Block<Tab>[t 
+    \]t
+nmenu <silent> &Python.End\ of\ Block<Tab>]e 
+    \]e
 nmenu &Python.-Sep2- :
 nmenu <silent> &Python.Shift\ Block\ Left<Tab>]< 
     \]<
@@ -76,28 +104,28 @@ nmenu <silent> &Python.Shift\ Block\ Right<Tab>]>
 vmenu <silent> &Python.Shift\ Block\ Right<Tab>]> 
     \]>
 nmenu &Python.-Sep3- :
-vmenu <silent> &Python.Comment\ Selection 
-    \:call PythonCommentSelection()<CR>
-nmenu <silent> &Python.Comment\ Selection 
-    \:call PythonCommentSelection()<CR>
-vmenu <silent> &Python.Uncomment\ Selection 
-    \:call PythonUncommentSelection()<CR>
-nmenu <silent> &Python.Uncomment\ Selection 
-    \:call PythonUncommentSelection()<CR>
+vmenu <silent> &Python.Comment\ Selection<Tab>]# 
+    \]#
+nmenu <silent> &Python.Comment\ Selection<Tab>]# 
+    \]#
+vmenu <silent> &Python.Uncomment\ Selection<Tab>]u 
+    \]u
+nmenu <silent> &Python.Uncomment\ Selection<Tab>]u 
+    \]u
 nmenu &Python.-Sep4- :
-nmenu <silent> &Python.Previous\ Class 
-    \:call PythonDec("class", -1)<CR>
-nmenu <silent> &Python.Next\ Class 
-    \:call PythonDec("class", 1)<CR>
-nmenu <silent> &Python.Previous\ Function 
-    \:call PythonDec("function", -1)<CR>
-nmenu <silent> &Python.Next\ Function 
-    \:call PythonDec("function", 1)<CR>
+nmenu <silent> &Python.Previous\ Class<Tab>]J 
+    \]J
+nmenu <silent> &Python.Next\ Class<Tab>]j 
+    \]j
+nmenu <silent> &Python.Previous\ Function<Tab>]F 
+    \]F
+nmenu <silent> &Python.Next\ Function<Tab>]f 
+    \]f
 nmenu &Python.-Sep5- :
 nmenu <silent> &Python.Select\ Block<Tab>]v 
     \]v
-nmenu <silent> &Python.Select\ Function<Tab>]f 
-    \]f
+nmenu <silent> &Python.Select\ Function<Tab>]d 
+    \]d
 nmenu <silent> &Python.Select\ Class<Tab>]c 
     \]c
 nmenu &Python.-Sep6- :
@@ -105,7 +133,6 @@ nmenu <silent> &Python.Previous\ Line\ wrt\ indent<Tab>]<up>
     \]<up>
 nmenu <silent> &Python.Next\ Line\ wrt\ indent<Tab>]<down> 
     \]<down>
-
 
 :com! PBoB execute "normal ".PythonBoB(line('.'), -1, 1)."G"
 :com! PEoB execute "normal ".PythonBoB(line('.'), 1, 1)."G"
@@ -290,8 +317,6 @@ function! UpdateMenu()
   " all buffers currently open, and group classes and functions by buffer
   if exists("g:menuran")
     aunmenu IM-Python
-  else
-    let g:menuran=1
   endif
   let restore_fe = &foldenable
   set nofoldenable
@@ -316,7 +341,7 @@ function! MenuBuilder()
   let parentclass = ""
   while line(".") < line("$")
     " search for a class or function
-    if match ( getline("."), '^\s*class\s\+[_a-zA-Z].*:\|^\s*def\s\+[_a-zA-Z].*:' ) != -1
+    if match ( getline("."), '^\s*class\s\+[_a-zA-Z].*\|^\s*def\s\+[_a-zA-Z].*' ) != -1
       norm ^
       let linenum = line('.')
       let indentcol = col('.')
@@ -330,6 +355,8 @@ function! MenuBuilder()
       else " this is a function
         call AddFunction(objname, linenum, parentclass)
       endif
+      " We actually created a menu, so lets set the global variable
+      let g:menuran=1
       call RebuildClassList(classlist, [objname, indentcol], classordef)
     endif " line matched
     norm j

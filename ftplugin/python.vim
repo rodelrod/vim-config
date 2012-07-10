@@ -10,9 +10,10 @@
 set formatoptions+=or
 
 " Activate highlight options on the downloaded python syntax file
-let python_highlight_all = 1
-let python_highlight_string_formatting = 0
-let python_highlight_space_errors= 0
+" 10/07/2012 Now using ubuntu's vim distribution syntax file
+"let python_highlight_all = 1
+"let python_highlight_string_formatting = 0
+"let python_highlight_space_errors= 0
 
 set foldmethod=indent
 set expandtab
@@ -76,11 +77,12 @@ set efm=%C\ %.%#,%A\ \ File\ \"%f\"\\,\ line\ %l%.%#,%Z%[%^\ ]%\\@=%m
 " ---------------------------------
 "  Text substitution
 " ---------------------------------
-inorea <buffer> cdef <c-r>=IMAP_PutTextWithMovement("def <++>(<++>):\n<++>\nreturn <++>")<cr>
-inorea <buffer> cclass <c-r>=IMAP_PutTextWithMovement("class <++>:\n<++>")<cr>
-inorea <buffer> cfor <c-r>=IMAP_PutTextWithMovement("for <++> in <++>:\n<++>")<cr>
-inorea <buffer> cif <c-r>=IMAP_PutTextWithMovement("if <++>:\n<++>")<cr>
-inorea <buffer> cifelse <c-r>=IMAP_PutTextWithMovement("if <++>:\n<++>\nelse:\n<++>")<cr>
+"  10/07/2012 IMAP no longer installed
+"inorea <buffer> cdef <c-r>=IMAP_PutTextWithMovement("def <++>(<++>):\n<++>\nreturn <++>")<cr>
+"inorea <buffer> cclass <c-r>=IMAP_PutTextWithMovement("class <++>:\n<++>")<cr>
+"inorea <buffer> cfor <c-r>=IMAP_PutTextWithMovement("for <++> in <++>:\n<++>")<cr>
+"inorea <buffer> cif <c-r>=IMAP_PutTextWithMovement("if <++>:\n<++>")<cr>
+"inorea <buffer> cifelse <c-r>=IMAP_PutTextWithMovement("if <++>:\n<++>\nelse:\n<++>")<cr>
 
 
 " RER 01/04/2005

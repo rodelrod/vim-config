@@ -1,8 +1,6 @@
 " rodrigo rodrigues: definições pessoais vim
 
 
-
-
 "-------------------------------------------------------
 " terminal-specific settings {{{
 "-------------------------------------------------------
@@ -57,32 +55,12 @@ set modeline
 "}}}
 
 "-------------------------------------------------------
-" comments {{{
-" -----------------------------------------------------
-" 07/05/2004 newsgroups script to comment/uncomment
-" 03/03/2006 adapted to adapt to current filetype commentstring
-au BufNewFile,BufRead * let b:comment_string = strpart(&l:commentstring, 0, stridx(&l:commentstring, '%s'))
-
-map ,_comment 0i<c-r>=b:comment_string<cr><esc>
-map ,_ncomment :normal ,_comment<nl>
-map ,_fcomment i<c-r>=b:comment_string<cr><esc>
-
-map ,_nfcomment :normal ,_fcomment<nl>
-map ,_uncomment :let @z = @/<cr>:s/^\(\s*\)<c-r>=escape(b:comment_string, '/')<cr>/\1/e<nl>:let @/ = @z<cr>:<bs>
-map ,_nuncomment :normal ,_uncomment<nl>
-
-map <f8>  ,_ncomment
-map <s-f8>  ,_nuncomment
-map <m-f8>  ,_nfcomment
-"}}}
-
-"-------------------------------------------------------
 " fold {{{
 " -----------------------------------------------
 :nmap <f2> za
 :imap <f2> <esc>zali
-:nmap <s-f2> zA
-:imap <s-f2> <esc>zAli
+:nnoremap <s-f2> zA
+:inoremap <s-f2> <esc>zAli
 "}}}
 
 "-------------------------------------------------------
@@ -142,40 +120,6 @@ imap <silent> <C-L> <esc>:call GoOutOfBlock()<cr>a
 "}}}1
 
 "-------------------------------------------------------
-" Tabbed browsing {{{
-"-------------------------------------------------------
-" RER 18/01/2008
-
-map <m-\> :tabnew<cr>
-imap <m-\> <Esc>:tabnew<cr>
-" quick access to tabs
-map <m-1> 1gt
-map <m-2> 2gt
-map <m-3> 3gt
-map <m-4> 4gt
-map <m-5> 5gt
-map <m-6> 6gt
-map <m-7> 7gt
-map <m-8> 8gt
-map <m-9> 9gt
-map <m-0> 10gt
-map <m-0> gT
-map <m-'> gt
-imap <m-1> <Esc>1gt
-imap <m-2> <Esc>2gt
-imap <m-3> <Esc>3gt
-imap <m-4> <Esc>4gt
-imap <m-5> <Esc>5gt
-imap <m-6> <Esc>6gt
-imap <m-7> <Esc>7gt
-imap <m-8> <Esc>8gt
-imap <m-9> <Esc>9gt
-imap <m-0> <Esc>gT
-imap <m-'> <Esc>gt
-
-"}}}
-
-"-------------------------------------------------------
 " OTHER MAPPINGS {{{
 "-------------------------------------------------------
 "Map ESCAPE into something within reach
@@ -206,19 +150,11 @@ nmap <S-F11> i<C-R>=strftime("%d/%m/%Y")<CR><Esc>
 imap <F3> <Esc>:nohls<CR>a
 nmap <F3> :nohls<CR>h 
 
-" <s-tab> auto-complete
-" 19/05/2004
-"imap <s-tab> <C-N>
-
-" <F12> edit _vimrc
-" 08/11/2006 Não preciso disto, tenho o menu Edition\Startup Settings
-"nmap <F12> :sp $HOME/_vimrc<CR>
-"imap <F12> <Esc>:sp $HOME/_vimrc<CR>
-
-
 " <C-H> com uma selecção para inserir tag HREF com o URL no clipboard
 " windows 
-vmap <c-h> "ldi<a href="<Esc>"+pa"><Esc>"lpa</a><Esc>
+" 10/07/2012 I don't use this anymore. When it gets serious with the HTML
+" coding, I should try out Sparkup/Zen Coding
+"vmap <c-h> "ldi<a href="<Esc>"+pa"><Esc>"lpa</a><Esc>
 "}}}
 
 "-------------------------------------------------------
@@ -228,9 +164,9 @@ vmap <c-h> "ldi<a href="<Esc>"+pa"><Esc>"lpa</a><Esc>
 " WinManager mappings
 " -------------------
 ""RER 02/04/2005
-map <c-w><c-t> :WMToggle<cr>
-map <c-w><c-f> :FirstExplorerWindow<cr>
-map <c-w><c-b> :BottomExplorerWindow<cr>
+nnoremap <silent> <c-w><c-t> :WMToggle<cr>
+nnoremap <silent> <c-w><c-f> :FirstExplorerWindow<cr>
+nnoremap <silent> <c-w><c-b> :BottomExplorerWindow<cr>
 "let g:persistentBehaviour=0
 let g:defaultExplorer=1
 
@@ -240,10 +176,58 @@ if has('win32')
 	let Tlist_Ctags_Cmd = 'h:/bin/ctags.exe' 
 endif
 let g:winManagerWindowLayout = 'FileExplorer,TagList|BufExplorer'
-nnoremap <silent> <S-F12> :Tlist<CR>
 
-" NERDTree (useful when using tabs instead of WinManager)
-map <c-w><c-e> :NERDTreeToggle<cr>
+" NERDTree
+" --------
+nnoremap <silent> <c-w><c-e> :NERDTreeToggle<cr>
+let NERDTreeIgnore = ['\.pyc$']
+let NERDTreeWinSize = 30
+
+" Tagbar
+" ------
+nnoremap <silent> <c-w><c-r> :TagbarToggle<CR>
+let g:tagbar_width = 30
+let g:tagbar_autofocus = 1
+" Sort according to order in file instead of name.
+let g:tagbar_sort = 0
+" Compact version
+"let g:tagbar_compact = 1
+
+" Pathogen
+" --------
+call pathogen#infect()
+
+" Powerline
+" --------
+let g:Powerline_symbols = 'fancy' 
+set laststatus=2
+
+" NERDcommenter
+" -------------
+"  toggle comment/uncomment
+map <f8> <Leader>c<space>
+
+" Ctrlp
+" -----
+"  use unix find instead of vim's internal search
+if has('win32')
+	let g:ctrlp_user_command = 'find %s -type f'
+endif
+
+" Syntastic
+" ---------
+nnoremap <silent> <f9> :SyntasticToggleMode<cr>
+"When set to 1 the error window will be automatically opened when errors are
+"detected, and closed when none are detected.
+let g:syntastic_auto_loc_list=1
+let g:syntastic_mode_map = { 'mode': 'passive',
+						   \ 'active_filetypes': [],
+						   \ 'passive_filetypes': [] }
+
+" Easytags
+" --------
+" Dynamic highlighting seems worthless to me
+let g:easytags_auto_highlight = 0
 
 "}}}
 
