@@ -199,7 +199,11 @@ call pathogen#infect()
 
 " Powerline
 " --------
-let g:Powerline_symbols = 'fancy' 
+if has('win32')
+	let g:Powerline_symbols = 'compatible' 
+else
+	let g:Powerline_symbols = 'fancy' 
+endif
 set laststatus=2
 
 " NERDcommenter
