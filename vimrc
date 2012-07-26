@@ -93,6 +93,7 @@ vnoremap \{ <esc>`>a}<esc>`<i{<esc>
 vnoremap \" <esc>`>a"<esc>`<i"<esc>
 vnoremap \' <esc>`>a'<esc>`<i'<esc>
 vnoremap \{{ <esc>`>a}}<esc>`<i{{<esc>
+vnoremap \` <esc>`>a`<esc>`<i`<esc>
 
 inoremap (( ()<esc>:py charstack.append(")")<cr>i
 inoremap [[ []<esc>:py charstack.append("]")<cr>i
@@ -101,6 +102,7 @@ inoremap {{{{ {{}}<esc>:py charstack.append("}}")<cr>hi
 inoremap {{%% {%%}<esc>:py charstack.append("%}")<cr>hi
 inoremap "" ""<esc>:py charstack.append('"')<cr>i
 inoremap '' ''<esc>:py charstack.append("'")<cr>i
+inoremap `` ``<esc>:py charstack.append("`")<cr>i
 inoremap << <><esc>:py charstack.append(">")<cr>i
 
 " Protect useful sequences from the mappings defined above 
