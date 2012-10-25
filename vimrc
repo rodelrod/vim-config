@@ -157,6 +157,18 @@ nmap <F3> :nohls<CR>h
 " 10/07/2012 I don't use this anymore. When it gets serious with the HTML
 " coding, I should try out Sparkup/Zen Coding
 "vmap <c-h> "ldi<a href="<Esc>"+pa"><Esc>"lpa</a><Esc>
+
+" Shortcuts for buffer switching
+" Inspired by Screen's <C-A> shortcuts.
+" RER 22/10/2012
+" Switch to next buffer
+inoremap <C-w><C-n> <ESC>:bn<CR>
+nnoremap <C-w><C-n> :bn<CR>
+" Switch to previous buffer
+inoremap <C-w><C-p> <ESC>:bp<CR>
+nnoremap <C-w><C-p> :bp<CR>
+
+
 "}}}
 
 "-------------------------------------------------------

@@ -93,3 +93,12 @@ set efm=%C\ %.%#,%A\ \ File\ \"%f\"\\,\ line\ %l%.%#,%Z%[%^\ ]%\\@=%m
 " inclui '.' nas palavras para tab-complete
 "set iskeyword+=.
 
+" RER 22/10/2012
+" plugin ropevim (Refactoring, introspective autocomplete)
+let ropevim_vim_completion = 1
+let ropevim_extended_complete = 1
+let g:ropevim_autoimport_modules = ["os.*","traceback","django.*"]
+imap <C-c><C-n> <C-R>=RopeCodeAssistInsertMode()<CR>
+
+" Auto-wrap at 80 characters
+set tw=80
