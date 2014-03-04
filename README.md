@@ -24,6 +24,7 @@ Solid plugins I feel I'll be using for a long time:
  - Syntastic
  - Easytags
  - NERDcommenter
+ - vim-python-pep8-indent (indent python like intelliJ Idea)
 
 Stuff I might or might not use:
  - Ack
