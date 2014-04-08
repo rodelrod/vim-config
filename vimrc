@@ -211,12 +211,12 @@ let g:tagbar_sort = 0
 " --------
 call pathogen#infect()
 
-" Powerline
+" vim-airline
 " --------
 if has('win32')
-	let g:Powerline_symbols = 'compatible' 
+	let g:airline_powerline_fonts = 0
 else
-	let g:Powerline_symbols = 'fancy' 
+	let g:airline_powerline_fonts = 1
 endif
 set laststatus=2
 

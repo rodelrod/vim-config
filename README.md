@@ -30,12 +30,7 @@ Stuff I might or might not use:
  - Ack
  - pydoc
  - Snipmate
+
+Stuff I ended up uninstalling because I didn't really use:
  - Rope/Ropevim
 
-For Ropevim, I needed to pip install rope and ropemode. After that I cloned
-https://bitbucket.org/agr/ropevim into ~/dev/vendors and copied over the
-ropevim.vim file to .vim/plugin. I got the documentation from another
-distribution of ropevim: https://github.com/klen/rope-vim/blob/master/doc/ropevim.txt.
-Klen's distribution is supposed to be a one-stop install, rope and ropemode
-included, and compatible with pathogen to boot. Unfortunately it proved to be
-buggy.
