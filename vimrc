@@ -4,54 +4,49 @@
 "-------------------------------------------------------
 " terminal-specific settings {{{
 "-------------------------------------------------------
-if has('win32')
-	source $vim/_vimrc
-	let g:pydoc_cmd = 'python c:/Python24/Lib/pydoc.py'
-else
-	source $VIM/vimrc
-	if !has('gui_running')
-		" Use mouse to resize windows in normal/help mode but never on insert
-		" mode, to preserve mouse copy-paste on the terminal
-		set mouse=nh
-	endif
-	if $TERM == "screen"
-		" Screen sends terminal codes transparently, so you need to tell
-		" vim what is your base terminal (I was having a bug with S-<Fx>)
-		set term=xterm
-		colorscheme xterm16  " 16-colors colorsheme 
-	elseif $TERM == "xterm-256color" 
-		" 256-colors colorscheme for putty
-		" you have to (1) use putty 0.49, (2) install ncurses-term on debian, 
-		" (3) send xterm-256color as term string 
-		" (the term string is hard-coded for this one, we can't set it)
-		colorscheme inkpot  
-	elseif $COLORTERM == "gnome-terminal"
-		" 256-colors colorscheme for gnome-terminal
-		" (the term string is hard-coded for this one, we can't set it)
-		set t_Co=256
-		colorscheme inkpot  
-	endif
-    let g:pydoc_cmd = "/usr/bin/pydoc" 
-	" filetype plugin was disabled by default in Debian/Ubuntu
-	filetype plugin on
+source $VIM/vimrc
+if $TERM == "screen"
+	" Screen sends terminal codes transparently, so you need to tell
+	" vim what is your base terminal (I was having a bug with S-<Fx>)
+	set term=xterm
+	colorscheme xterm16  " 16-colors colorsheme 
+elseif $TERM == "xterm-256color" 
+	" 256-colors colorscheme for putty
+	" you have to (1) use putty 0.49, (2) install ncurses-term on debian, 
+	" (3) send xterm-256color as term string 
+	" (the term string is hard-coded for this one, we can't set it)
+	colorscheme inkpot  
+elseif $COLORTERM == "gnome-terminal"
+	" 256-colors colorscheme for gnome-terminal
+	" (the term string is hard-coded for this one, we can't set it)
+	set t_Co=256
+	colorscheme inkpot  
 endif
 "}}}
 
 "-------------------------------------------------------
 " look & feel {{{
 " ------------------------------------------------------
-if has('win32')
-	set guifont=Bitstream_Vera_Sans_Mono:h10:cANSI
-	colors desert
-endif
 set tabstop=4
 set shiftwidth=4
+set expandtab		"the cases when I don't want this are much rarer
 set autoindent
 set fileencodings=ucs-bom,utf-8,latin1
 set guioptions-=T 	"gets rid of the toolbar
 set vb t_vb=		"replaces beep for flash for wrong commands
 "set virtualedit=all 
 set modeline
+set number
+
+" stuff that is commented out on Ubuntu by default
+" ------------------------------------------------
+set mouse=a       " better than nh for copy/paste
+set showcmd
+set showmatch
+set ignorecase
+set smartcase
+set incsearch
+set hidden
 "}}}
 
 "-------------------------------------------------------
@@ -61,22 +56,6 @@ set modeline
 :imap <f2> <esc>zali
 :nnoremap <s-f2> zA
 :inoremap <s-f2> <esc>zAli
-"}}}
-
-"-------------------------------------------------------
-" acentos através do ù {{{
-"-------------------------------------------------------
-" acentos agudos no teclado francês
-imap ùa <c-k>'a
-imap ùo <c-k>'o
-imap ùi <c-k>'i
-imap ùe <c-k>'e
-imap ùu <c-k>'u
-imap ùa <c-k>'a
-imap ùo <c-k>'o
-imap ùi <c-k>'i
-imap ùe <c-k>'e
-imap ùu <c-k>'u
 "}}}
 
 "-------------------------------------------------------
@@ -124,18 +103,9 @@ imap <silent> <C-L> <esc>:call GoOutOfBlock()<cr>a
 "-------------------------------------------------------
 " OTHER MAPPINGS {{{
 "-------------------------------------------------------
-"Map ESCAPE into something within reach
-" (remap Caps-Lock to Control using AutoHotKey for maximum punch)
-" Linux note: On linux, <C-Space> == <Nul>
-if has('unix') && !has('gui_running')
-	imap <Nul> <Esc>
-	vmap <Nul> <Esc>
-else
-	imap <C-space> <Esc>
-	vmap <C-space> <Esc>
-endif
 
 "Map copy-paste to OS clipboard using shift-ctrl-c and shift-ctrl-v
+" (não funciona no gnome-terminal, só gvim)
 vmap <S-C-C> "+y
 imap <S-C-V> <Esc>"+p
 vmap <S-C-V> "+p
@@ -148,15 +118,10 @@ nmap <S-F11> i<C-R>=strftime("%d/%m/%Y")<CR><Esc>
 
 "  Remove search results highlighting
 " 'a' and 'h' return to original cursor position
-" RER 19/05/2004
-imap <F3> <Esc>:nohls<CR>a
-nmap <F3> :nohls<CR>h 
+map <F3> :set hls!<CR>
+imap <F3> <Esc>:set hls!<CR>a
+vmap <F3> <Esc>:set hls!<CR>gv
 
-" <C-H> com uma selecção para inserir tag HREF com o URL no clipboard
-" windows 
-" 10/07/2012 I don't use this anymore. When it gets serious with the HTML
-" coding, I should try out Sparkup/Zen Coding
-"vmap <c-h> "ldi<a href="<Esc>"+pa"><Esc>"lpa</a><Esc>
 
 " Shortcuts for buffer switching
 " Inspired by Screen's <C-A> shortcuts.
@@ -174,22 +139,6 @@ nnoremap <C-w><C-p> :bp<CR>
 "-------------------------------------------------------
 " PLUGINS {{{
 "------------------------------------------
-
-" WinManager mappings
-" -------------------
-""RER 02/04/2005
-nnoremap <silent> <c-w><c-t> :WMToggle<cr>
-nnoremap <silent> <c-w><c-f> :FirstExplorerWindow<cr>
-nnoremap <silent> <c-w><c-b> :BottomExplorerWindow<cr>
-"let g:persistentBehaviour=0
-let g:defaultExplorer=1
-
-" Taglist
-" ----------------
-if has('win32')
-	let Tlist_Ctags_Cmd = 'h:/bin/ctags.exe' 
-endif
-let g:winManagerWindowLayout = 'FileExplorer,TagList|BufExplorer'
 
 " NERDTree
 " --------
@@ -209,7 +158,7 @@ let g:tagbar_sort = 0
 
 " Pathogen
 " --------
-call pathogen#infect()
+execute pathogen#infect()
 
 " vim-airline
 " --------
@@ -224,13 +173,6 @@ set laststatus=2
 " -------------
 "  toggle comment/uncomment
 map <f8> <Leader>c<space>
-
-" Ctrlp
-" -----
-"  use unix find instead of vim's internal search
-if has('win32')
-	let g:ctrlp_user_command = 'find %s -type f'
-endif
 
 " Syntastic
 " ---------
