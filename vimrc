@@ -4,6 +4,7 @@
 "-------------------------------------------------------
 " terminal-specific settings {{{
 "-------------------------------------------------------
+colorscheme inkpot     " default colorscheme
 source $VIM/vimrc
 if $TERM == "screen"
 	" Screen sends terminal codes transparently, so you need to tell
@@ -20,7 +21,6 @@ elseif $COLORTERM == "gnome-terminal"
 	" 256-colors colorscheme for gnome-terminal
 	" (the term string is hard-coded for this one, we can't set it)
 	set t_Co=256
-	colorscheme inkpot  
 endif
 "}}}
 
