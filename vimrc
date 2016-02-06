@@ -133,6 +133,22 @@ nnoremap <C-w><C-n> :bn<CR>
 inoremap <C-w><C-p> <ESC>:bp<CR>
 nnoremap <C-w><C-p> :bp<CR>
 
+" Add separate line when splitting tags. Example:
+"
+" <div>|</div>
+"
+"  converts to 
+"
+" <div>
+"   |
+" </div>
+if has("gui_running")
+    inoremap <C-Enter> <CR><Esc>O
+else
+    " in gnome-terminal, <C-Enter> is interpreted as NL, same as <C-J>
+    inoremap <C-J> <CR><Esc>O
+endif
+
 
 "}}}
 
@@ -167,6 +183,8 @@ if has('win32')
 else
 	let g:airline_powerline_fonts = 1
 endif
+" turn off warnings for trailing whitespace ('trailing')
+let g:airline#extensions#whitespace#checks = [ 'indent', 'long' ]
 set laststatus=2
 
 " NERDcommenter
