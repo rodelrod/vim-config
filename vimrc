@@ -22,6 +22,12 @@ elseif $COLORTERM == "gnome-terminal"
 	" (the term string is hard-coded for this one, we can't set it)
 	set t_Co=256
 endif
+
+" Make sure we start in the correct directory when launching gvim from
+" Nautilus 
+if has("gui_running")
+    cd %:h
+endif
 "}}}
 
 "-------------------------------------------------------
@@ -148,7 +154,6 @@ else
     " in gnome-terminal, <C-Enter> is interpreted as NL, same as <C-J>
     inoremap <C-J> <CR><Esc>O
 endif
-
 
 "}}}
 
