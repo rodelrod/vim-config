@@ -94,4 +94,4 @@ set efm=%C\ %.%#,%A\ \ File\ \"%f\"\\,\ line\ %l%.%#,%Z%[%^\ ]%\\@=%m
 "set iskeyword+=.
 
 " Auto-wrap at 80 characters
-set tw=80
+"set tw=80
