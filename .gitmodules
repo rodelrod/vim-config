@@ -54,3 +54,6 @@
 [submodule "bundle/sparkup"]
 	path = bundle/sparkup
 	url = git@github.com:rodelrod/sparkup.git
+[submodule "bundle/vim-vue"]
+	path = bundle/vim-vue
+	url = https://github.com/posva/vim-vue
