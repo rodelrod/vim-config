@@ -57,3 +57,12 @@
 [submodule "bundle/vim-vue"]
 	path = bundle/vim-vue
 	url = https://github.com/posva/vim-vue
+[submodule "bundle/vim-go"]
+	path = bundle/vim-go
+	url = https://github.com/fatih/vim-go.git
+[submodule "bundle/vim-toml"]
+	path = bundle/vim-toml
+	url = git@github.com:cespare/vim-toml
+[submodule "bundle/rust.vim"]
+	path = bundle/rust.vim
+	url = git@github.com:rust-lang/rust.vim
