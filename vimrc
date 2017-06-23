@@ -222,6 +222,19 @@ let g:syntastic_mode_map = { 'mode': 'passive',
 " Dynamic highlighting seems worthless to me
 let g:easytags_auto_highlight = 0
 
+" Jedi
+" ----
+" Let's only complete when I ask him to
+let g:jedi#popup_on_dot = 0
+" Show call signatures on the command line ("2") instead of the popup, 
+" which tends to get stuck. We need to also set noshowmode so that the mode
+" doesn't cobble over the signatures.
+let g:jedi#show_call_signatures = "2"
+set noshowmode
+" Prevent the documentation window from automatically opening. It makes the
+" text go up and down all the time. I can open it explicitely with K.
+autocmd FileType python setlocal completeopt-=preview
+
 "}}}
 
 " vim:fdm=marker
