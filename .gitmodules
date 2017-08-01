@@ -66,3 +66,9 @@
 [submodule "bundle/rust.vim"]
 	path = bundle/rust.vim
 	url = git@github.com:rust-lang/rust.vim
+[submodule "bundle/vim-pug"]
+	path = bundle/vim-pug
+	url = git@github.com:digitaltoad/vim-pug.git
+[submodule "bundle/vim-stylus"]
+	path = bundle/vim-stylus
+	url = git@github.com:wavded/vim-stylus.git

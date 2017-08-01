@@ -235,6 +235,10 @@ set noshowmode
 " text go up and down all the time. I can open it explicitely with K.
 autocmd FileType python setlocal completeopt-=preview
 
-"}}}
+
+" Ctrlp
+" -----
+" Skip big directories full of junk that I never want to edit
+let g:ctrlp_custom_ignore = 'node_modules\|git'
 
 " vim:fdm=marker
