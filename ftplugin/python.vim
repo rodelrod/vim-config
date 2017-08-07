@@ -21,7 +21,7 @@ set expandtab
 " ---------------------------------
 "  Run/Debug/Profile
 " ---------------------------------
-python << EOF
+Py << EOF
 import vim
 def SetBreakpoint():
     import re
@@ -60,10 +60,10 @@ def RemoveBreakpoints():
 
 EOF
 
-map <f7> :py SetBreakpoint()<cr>
-map <s-f7> :py RemoveBreakpoints()<cr>
+map <f7> :Py SetBreakpoint()<cr>
+map <s-f7> :Py RemoveBreakpoints()<cr>
 
-map <F4> :w<CR>:!python "%"<CR>
+map <F4> :w<CR>:!Py "%"<CR>
 map <S-F4> :w<CR>:!start python "%"<CR>
 map <C-F4> :w<CR>:!start python -m pdb "%"<CR>
 map <M-F4> :w<CR>:!start python -m profile "%"<CR>

@@ -80,8 +80,13 @@ endif
 " Adapted from http://amix.dk/
 " This version's better because it uses a Python list to produce a character
 " stack
-py charstack = []
-py import vim
+if has("python3")
+  command! -nargs=1 Py py3 <args>
+else
+  command! -nargs=1 Py py <args>
+endif
+Py charstack = []
+Py import vim
 vnoremap \( <esc>`>a)<esc>`<i(<esc>
 vnoremap \[ <esc>`>a]<esc>`<i[<esc>
 vnoremap \{ <esc>`>a}<esc>`<i{<esc>
@@ -90,15 +95,15 @@ vnoremap \' <esc>`>a'<esc>`<i'<esc>
 vnoremap \{{ <esc>`>a}}<esc>`<i{{<esc>
 vnoremap \` <esc>`>a`<esc>`<i`<esc>
 
-inoremap (( ()<esc>:py charstack.append(")")<cr>i
-inoremap [[ []<esc>:py charstack.append("]")<cr>i
-inoremap {{ {}<esc>:py charstack.append("}")<cr>i
-inoremap {{{{ {{}}<esc>:py charstack.append("}}")<cr>hi
-inoremap {{%% {%%}<esc>:py charstack.append("%}")<cr>hi
-inoremap "" ""<esc>:py charstack.append('"')<cr>i
-inoremap '' ''<esc>:py charstack.append("'")<cr>i
-inoremap `` ``<esc>:py charstack.append("`")<cr>i
-inoremap << <><esc>:py charstack.append(">")<cr>i
+inoremap (( ()<esc>:Py charstack.append(")")<cr>i
+inoremap [[ []<esc>:Py charstack.append("]")<cr>i
+inoremap {{ {}<esc>:Py charstack.append("}")<cr>i
+inoremap {{{{ {{}}<esc>:Py charstack.append("}}")<cr>hi
+inoremap {{%% {%%}<esc>:Py charstack.append("%}")<cr>hi
+inoremap "" ""<esc>:Py charstack.append('"')<cr>i
+inoremap '' ''<esc>:Py charstack.append("'")<cr>i
+inoremap `` ``<esc>:Py charstack.append("`")<cr>i
+inoremap << <><esc>:Py charstack.append(">")<cr>i
 
 " Protect useful sequences from the mappings defined above 
 inoremap {{{ {{{
@@ -106,9 +111,8 @@ inoremap """ """
 inoremap <<< <<<
 
 function! GoOutOfBlock()
-python << EOL
+Py << EOL
 if len(charstack) > 0:
-    print charstack
     vim.command('normal f%s<cr>' % charstack.pop())
 EOL
 endfunction
@@ -234,6 +238,23 @@ set noshowmode
 " Prevent the documentation window from automatically opening. It makes the
 " text go up and down all the time. I can open it explicitely with K.
 autocmd FileType python setlocal completeopt-=preview
+
+
+" Vim-Pyenv
+" ---------
+" Allows Jedi to work with the correct Python version under pyenv and virtualenv
+if jedi#init_python()
+  function! s:jedi_auto_force_py_version() abort
+    let major_version = pyenv#python#get_internal_major_version()
+    call jedi#force_py_version(major_version)
+  endfunction
+  augroup vim-pyenv-custom-augroup
+    autocmd! *
+    autocmd User vim-pyenv-activate-post   call s:jedi_auto_force_py_version()
+    autocmd User vim-pyenv-deactivate-post call s:jedi_auto_force_py_version()
+  augroup END
+endif
+
 
 
 " Ctrlp
