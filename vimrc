@@ -262,4 +262,10 @@ endif
 " Skip big directories full of junk that I never want to edit
 let g:ctrlp_custom_ignore = 'node_modules\|git'
 
+
+" Vim-Ansible-YAML
+" ----------------
+" Use Ansible YAML plugin for normal YAML files (default indent is total crap)
+autocmd BufNewFile,BufRead *.yml,*.yaml set filetype=ansible
+
 " vim:fdm=marker

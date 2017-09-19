@@ -75,3 +75,6 @@
 [submodule "bundle/vim-pyenv"]
 	path = bundle/vim-pyenv
 	url = git@github.com:lambdalisue/vim-pyenv.git
+[submodule "bundle/vim-ansible-yaml"]
+	path = bundle/vim-ansible-yaml
+	url = https://github.com/chase/vim-ansible-yaml
