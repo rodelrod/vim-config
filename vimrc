@@ -147,10 +147,8 @@ vmap <F3> <Esc>:set hls!<CR>gv
 " Inspired by Screen's <C-A> shortcuts.
 " RER 22/10/2012
 " Switch to next buffer
-inoremap <C-w><C-n> <ESC>:bn<CR>
 nnoremap <C-w><C-n> :bn<CR>
 " Switch to previous buffer
-inoremap <C-w><C-p> <ESC>:bp<CR>
 nnoremap <C-w><C-p> :bp<CR>
 
 " Add separate line when splitting tags. Example:
