@@ -80,6 +80,9 @@ endif
 " Adapted from http://amix.dk/
 " This version's better because it uses a Python list to produce a character
 " stack
+"
+" 2018-04-15: the backslash vnoremaps are no longer necessary because I can 
+"             now use the S mappings from vim-surround.
 if has("python3")
   command! -nargs=1 Py py3 <args>
 else
