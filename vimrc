@@ -142,6 +142,9 @@ map <F3> :set hls!<CR>
 imap <F3> <Esc>:set hls!<CR>a
 vmap <F3> <Esc>:set hls!<CR>gv
 
+" Quick toggle paste mode, which disables auto-indenting when pasting.
+set pastetoggle=<F6>
+
 
 " Shortcuts for buffer switching
 " Inspired by Screen's <C-A> shortcuts.
