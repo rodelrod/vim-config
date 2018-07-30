@@ -268,7 +268,6 @@ if jedi#init_python()
 endif
 
 
-
 " Ctrlp
 " -----
 " Skip big directories full of junk that I never want to edit
@@ -279,5 +278,14 @@ let g:ctrlp_custom_ignore = 'node_modules\|git'
 " ----------------
 " Use Ansible YAML plugin for normal YAML files (default indent is total crap)
 autocmd BufNewFile,BufRead *.yml,*.yaml set filetype=ansible
+
+
+" Vim-Flow
+" --------
+" If this is set to 1, the quickfix window will not be opened when there are
+" no errors, and will be automatically closed when previous errors are
+" cleared. 
+let g:flow#autoclose = 1
+
 
 " vim:fdm=marker
