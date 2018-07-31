@@ -48,9 +48,6 @@
 [submodule "bundle/html5"]
 	path = bundle/html5
 	url = git@github.com:othree/html5.vim.git
-[submodule "bundle/sparkup"]
-	path = bundle/sparkup
-	url = git@github.com:rodelrod/sparkup.git
 [submodule "bundle/vim-vue"]
 	path = bundle/vim-vue
 	url = https://github.com/posva/vim-vue
@@ -84,3 +81,6 @@
 [submodule "bundle/vim-flow"]
 	path = bundle/vim-flow
 	url = git@github.com:flowtype/vim-flow.git
+[submodule "bundle/emmet-vim"]
+	path = bundle/emmet-vim
+	url = git@github.com:mattn/emmet-vim.git
