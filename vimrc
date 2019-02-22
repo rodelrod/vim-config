@@ -238,8 +238,11 @@ set laststatus=2
 
 " NERDcommenter
 " -------------
-"  toggle comment/uncomment
-map <f8> <Leader>c<space>
+" toggle comment/uncomment with the same key as IntelliJ (<C-/>)
+" In linux terminal, <C-/> gets interpreted as <C-_> for some reason
+map <C-_> <plug>NERDCommenterToggle
+" keep the old <F8> comment mapping for GVim (GVim can't see <C-/>)
+map <F8> <plug>NERDCommenterToggle
 
 " Syntastic
 " ---------
