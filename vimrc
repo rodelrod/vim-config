@@ -206,7 +206,7 @@ endif
 " NERDTree
 " --------
 nnoremap <silent> <c-w><c-e> :NERDTreeToggle<cr>
-let NERDTreeRespectWildIgnore=1
+let NERDTreeRespectWildIgnore = 1
 let NERDTreeWinSize = 30
 
 " Tagbar
