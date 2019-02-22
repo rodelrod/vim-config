@@ -56,6 +56,10 @@ set ignorecase
 set smartcase
 set incsearch
 set hidden
+
+" more natural window splitting
+set splitbelow
+set splitright
 "}}}
 
 "----------------------------------------------------
