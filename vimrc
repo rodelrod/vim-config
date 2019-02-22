@@ -17,6 +17,9 @@ elseif $TERM == "xterm-256color"
 	" (3) send xterm-256color as term string 
 	" (the term string is hard-coded for this one, we can't set it)
 	colorscheme inkpot  
+elseif $TERM == "screen-256color"
+    " Make mouse smoother and more stable on tmux (esp. window resizing)
+    set ttymouse=xterm2
 elseif $COLORTERM == "gnome-terminal"
 	" 256-colors colorscheme for gnome-terminal
 	" (the term string is hard-coded for this one, we can't set it)
