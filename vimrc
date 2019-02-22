@@ -208,6 +208,8 @@ endif
 nnoremap <silent> <c-w><c-e> :NERDTreeToggle<cr>
 let NERDTreeRespectWildIgnore = 1
 let NERDTreeWinSize = 30
+" Due to Orgmode, I keep reaching out for <Tab> instead of "o" or <CR>
+let g:NERDTreeMapActivateNode = "<Tab>"
 
 " Tagbar
 " ------
