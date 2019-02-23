@@ -36,6 +36,7 @@ Plugin 'chase/vim-ansible-yaml'
 Plugin 'davidhalter/jedi-vim'
 Plugin 'flowtype/vim-flow'
 Plugin 'mattn/emmet-vim'
+Plugin 'NLKNguyen/papercolor-theme'
 
 " Tags
 Plugin 'xolox/vim-misc'
