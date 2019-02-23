@@ -1,11 +1,75 @@
-" rodrigo rodrigues: definições pessoais vim
+" rodelrod personal vim definitions since 2003
 
+"-------------------------------------------------------
+" Vundle Plugins {{{
+"-------------------------------------------------------
+set nocompatible              " be iMproved, required
+filetype off                  " required
+
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+" alternatively, pass a path where Vundle should install plugins
+"call vundle#begin('~/some/path/here')
+
+" let Vundle manage Vundle, required
+Plugin 'VundleVim/Vundle.vim'
+
+" My plugins
+" ----------
+Plugin 'tpope/vim-fugitive'
+Plugin 'tpope/vim-surround'
+Plugin 'scrooloose/nerdtree'
+Plugin 'scrooloose/syntastic'
+Plugin 'scrooloose/nerdcommenter'
+Plugin 'mileszs/ack.vim'
+Plugin 'derekwyatt/vim-scala'
+Plugin 'hynek/vim-python-pep8-indent'
+Plugin 'bling/vim-airline'
+Plugin 'ctrlpvim/ctrlp.vim'
+Plugin 'mxw/vim-jsx'
+Plugin 'othree/html5.vim'
+Plugin 'posva/vim-vue'
+Plugin 'cespare/vim-toml'
+Plugin 'rust-lang/rust.vim'
+Plugin 'chase/vim-ansible-yaml'
+Plugin 'davidhalter/jedi-vim'
+Plugin 'flowtype/vim-flow'
+Plugin 'mattn/emmet-vim'
+
+" Tags
+Plugin 'xolox/vim-misc'
+Plugin 'xolox/vim-easytags'
+Plugin 'majutsushi/tagbar'
+
+" Snipmate
+Plugin 'MarcWeber/vim-addon-mw-utils'
+Plugin 'tomtom/tlib_vim'
+Plugin 'garbas/vim-snipmate'
+Plugin 'honza/vim-snippets'     " Optional
+
+
+
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
+filetype plugin indent on    " required
+" To ignore plugin indent changes, instead use:
+"filetype plugin on
+"
+" Brief help
+" :PluginList       - lists configured plugins
+" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
+" :PluginSearch foo - searches for foo; append `!` to refresh local cache
+" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
+"
+" see :h vundle for more details or wiki for FAQ
+" Put your non-Plugin stuff after this line
+" }}}
 
 "-------------------------------------------------------
 " terminal-specific settings {{{
 "-------------------------------------------------------
 colorscheme inkpot     " default colorscheme
-source $VIM/vimrc
 if $TERM == "screen"
 	" Screen sends terminal codes transparently, so you need to tell
 	" vim what is your base terminal (I was having a bug with S-<Fx>)
@@ -75,10 +139,6 @@ if has("autocmd")
   au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 endif
 
-" Have Vim load indentation rules and plugins according to the detected filetype.
-if has("autocmd")
-  filetype plugin indent on
-endif
 "}}}
 
 "-------------------------------------------------------
@@ -152,7 +212,7 @@ vnoremap < <gv
 "-------------------------------------------------------
 
 "Map copy-paste to OS clipboard using shift-ctrl-c and shift-ctrl-v
-" (não funciona no gnome-terminal, só gvim)
+" (nÃ£o funciona no gnome-terminal, sÃ³ gvim)
 vmap <S-C-C> "+y
 imap <S-C-V> <Esc>"+p
 vmap <S-C-V> "+p
@@ -200,7 +260,7 @@ endif
 "}}}
 
 "-------------------------------------------------------
-" PLUGINS {{{
+" PLUGINS CONFIG {{{
 "------------------------------------------
 
 " NERDTree
@@ -220,10 +280,6 @@ let g:tagbar_autofocus = 1
 let g:tagbar_sort = 0
 " Compact version
 "let g:tagbar_compact = 1
-
-" Pathogen
-" --------
-execute pathogen#infect()
 
 " vim-airline
 " --------
@@ -278,8 +334,7 @@ autocmd FileType python setlocal completeopt-=preview
 " Allows Jedi to work with the correct Python version under pyenv and virtualenv
 if jedi#init_python()
   function! s:jedi_auto_force_py_version() abort
-    let major_version = pyenv#python#get_internal_major_version()
-    call jedi#force_py_version(major_version)
+    let g:jedi#force_py_version = pyenv#python#get_internal_major_version()
   endfunction
   augroup vim-pyenv-custom-augroup
     autocmd! *
@@ -287,7 +342,6 @@ if jedi#init_python()
     autocmd User vim-pyenv-deactivate-post call s:jedi_auto_force_py_version()
   augroup END
 endif
-
 
 " Ctrlp
 " -----
