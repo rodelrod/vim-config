@@ -3,8 +3,29 @@ vim-config
 
 Vim configuration files: vimrc, plugins, syntax enhacements etc.
 
-For now I have several alternatives to browse files. I'll probably stick with
-one of them when the new usage patterns settle in. 
+Installation
+------------
+
+I use [Vundle](https://github.com/VundleVim/Vundle.vim) to manage plugins. Git clone Vundle.vim into `bundle/`, then run vim and `:PluginInstall`
+
+```bash
+git clone https://github.com/VundleVim/Vundle.vim.git bundle/Vundle.vim
+```
+
+Usage
+-----
+
+For Syntastic to do its job, install `flake8` in the virtualenv, the start
+active mode with <F9>.
+
+```bash
+pip install flake8
+```
+
+Alternatively you can also you pylint (heavier and more verbose).
+
+Plugins
+-------
 
 To browse the filesystem:
  - NERDTree (CTRL-w CTRL-e)
@@ -30,14 +51,4 @@ Stuff I might or might not use:
 
 Stuff I ended up uninstalling because I didn't really use:
  - Rope/Ropevim
-
-Installation
-------------
-
-I use [Vundle](https://github.com/VundleVim/Vundle.vim) to manage plugins. Git clone Vundle.vim into `bundle/`, then run vim and `:PluginInstall`
-
-```bash
-git clone https://github.com/VundleVim/Vundle.vim.git bundle/Vundle.vim
-```
-
 
