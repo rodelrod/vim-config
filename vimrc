@@ -37,6 +37,8 @@ Plugin 'davidhalter/jedi-vim'
 Plugin 'flowtype/vim-flow'
 Plugin 'mattn/emmet-vim'
 Plugin 'NLKNguyen/papercolor-theme'
+Plugin 'terryma/vim-multiple-cursors'
+Plugin 'godlygeek/tabular'
 
 " Tags
 Plugin 'xolox/vim-misc'
