@@ -72,7 +72,8 @@ filetype plugin indent on    " required
 "-------------------------------------------------------
 " terminal-specific settings {{{
 "-------------------------------------------------------
-colorscheme inkpot     " default colorscheme
+colorscheme PaperColor
+set background=dark
 if $TERM == "screen"
 	" Screen sends terminal codes transparently, so you need to tell
 	" vim what is your base terminal (I was having a bug with S-<Fx>)
