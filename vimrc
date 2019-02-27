@@ -19,6 +19,7 @@ Plugin 'VundleVim/Vundle.vim'
 " ----------
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-surround'
+Plugin 'tpope/vim-unimpaired'
 Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/syntastic'
 Plugin 'scrooloose/nerdcommenter'
