@@ -312,7 +312,7 @@ nnoremap <silent> <f9> :SyntasticToggleMode<cr>
 "detected, and closed when none are detected.
 let g:syntastic_auto_loc_list=1
 let g:syntastic_mode_map = { 'mode': 'passive',
-						   \ 'active_filetypes': [],
+						   \ 'active_filetypes': ['python'],
 						   \ 'passive_filetypes': [] }
 
 " Easytags
