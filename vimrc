@@ -80,12 +80,6 @@ if $TERM == "screen"
 	" vim what is your base terminal (I was having a bug with S-<Fx>)
 	set term=xterm
 	colorscheme xterm16  " 16-colors colorsheme 
-elseif $TERM == "xterm-256color" 
-	" 256-colors colorscheme for putty
-	" you have to (1) use putty 0.49, (2) install ncurses-term on debian, 
-	" (3) send xterm-256color as term string 
-	" (the term string is hard-coded for this one, we can't set it)
-	colorscheme inkpot  
 elseif $TERM == "screen-256color"
     " Make mouse smoother and more stable on tmux (esp. window resizing)
     set ttymouse=xterm2
