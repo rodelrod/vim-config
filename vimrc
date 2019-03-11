@@ -123,6 +123,10 @@ set hidden
 " more natural window splitting
 set splitbelow
 set splitright
+
+" activate the shipped matchit plugin
+runtime macros/matchit.vim
+
 "}}}
 
 "----------------------------------------------------
