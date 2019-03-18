@@ -26,6 +26,7 @@ Plugin 'scrooloose/nerdcommenter'
 Plugin 'mileszs/ack.vim'
 Plugin 'derekwyatt/vim-scala'
 Plugin 'hynek/vim-python-pep8-indent'
+Plugin 'vim-python/python-syntax'     "until semshi is available for vim
 Plugin 'bling/vim-airline'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'mxw/vim-jsx'
@@ -366,6 +367,11 @@ autocmd BufNewFile,BufRead *.yml,*.yaml set filetype=ansible
 " no errors, and will be automatically closed when previous errors are
 " cleared. 
 let g:flow#autoclose = 1
+
+" Python-Syntax
+" -------------
+let g:python_highlight_all = 1
+let g:python_highlight_operators = 0   "I don't like the highlighted '='
 
 
 " vim:fdm=marker
