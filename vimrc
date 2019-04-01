@@ -136,7 +136,7 @@ runtime macros/matchit.vim
 "----------------------------------------------------
 " with these settings we can use find, * and tab for fuzzy-matching
 set wildmenu        "I feel embarrassed how long it took me to find out about this
-set wildignore+=*.pyc,*.pyo,__pycache__,*.swp,*.swo
+set wildignore+=*.pyc,*.pyo,__pycache__,*.swp,*.swo,*.class
 set path+=**        "have file commands search in sub-directories too
 
 " Have Vim jump to the last position when reopening a file
