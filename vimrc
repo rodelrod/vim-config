@@ -353,6 +353,8 @@ endif
 " -----
 " Skip big directories full of junk that I never want to edit
 let g:ctrlp_custom_ignore = 'node_modules\|git'
+" Show hidden files by default
+let g:ctrlp_show_hidden = 1
 
 
 " Vim-Ansible-YAML
