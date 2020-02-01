@@ -24,6 +24,7 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/syntastic'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'mileszs/ack.vim'
+Plugin 'jremmen/vim-ripgrep'
 Plugin 'derekwyatt/vim-scala'
 Plugin 'hynek/vim-python-pep8-indent'
 Plugin 'vim-python/python-syntax'     "until semshi is available for vim
