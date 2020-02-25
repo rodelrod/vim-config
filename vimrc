@@ -37,12 +37,12 @@ Plugin 'cespare/vim-toml'
 Plugin 'rust-lang/rust.vim'
 Plugin 'chase/vim-ansible-yaml'
 Plugin 'davidhalter/jedi-vim'
-Plugin 'flowtype/vim-flow'
 Plugin 'mattn/emmet-vim'
 Plugin 'NLKNguyen/papercolor-theme'
 Plugin 'terryma/vim-multiple-cursors'
 Plugin 'godlygeek/tabular'
 Plugin 'airblade/vim-gitgutter'
+Plugin 'dense-analysis/ale'
 
 " Tags
 Plugin 'xolox/vim-misc'
@@ -83,7 +83,7 @@ if $TERM == "screen"
 	" vim what is your base terminal (I was having a bug with S-<Fx>)
 	set term=xterm
 	colorscheme xterm16  " 16-colors colorsheme 
-elseif $TERM == "screen-256color"
+elseif $TERM == "screen-256color" && !has('nvim')
     " Make mouse smoother and more stable on tmux (esp. window resizing)
     set ttymouse=xterm2
 elseif $COLORTERM == "gnome-terminal"
@@ -363,13 +363,6 @@ let g:ctrlp_show_hidden = 1
 " Use Ansible YAML plugin for normal YAML files (default indent is total crap)
 autocmd BufNewFile,BufRead *.yml,*.yaml set filetype=ansible
 
-
-" Vim-Flow
-" --------
-" If this is set to 1, the quickfix window will not be opened when there are
-" no errors, and will be automatically closed when previous errors are
-" cleared. 
-let g:flow#autoclose = 1
 
 " Python-Syntax
 " -------------
