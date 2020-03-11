@@ -43,6 +43,7 @@ Plugin 'terryma/vim-multiple-cursors'
 Plugin 'godlygeek/tabular'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'dense-analysis/ale'
+Plugin 'hashivim/vim-terraform'
 
 " Tags
 Plugin 'xolox/vim-misc'
