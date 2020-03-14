@@ -128,6 +128,9 @@ set hidden
 set splitbelow
 set splitright
 
+" Highlight line when in Insert mode
+:autocmd InsertEnter,InsertLeave * set cul!
+
 " activate the shipped matchit plugin
 runtime macros/matchit.vim
 
