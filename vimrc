@@ -278,8 +278,15 @@ endif
 nnoremap <silent> <c-w><c-e> :NERDTreeToggle<cr>
 let NERDTreeRespectWildIgnore = 1
 let NERDTreeWinSize = 30
-" Due to Orgmode, I keep reaching out for <Tab> instead of "o" or <CR>
+" Due to Orgmode, I keep reaching out for <Tab> instead of `o` or <CR>
 let g:NERDTreeMapActivateNode = "<Tab>"
+" Make the horizontal/vertical split keybindings more coherent with C-W window
+" commands, the CtrlP extension and Spacemacs: `v` for vertical split and `s`
+" for horizontal split.
+let g:NERDTreeMapOpenSplit = 's'
+let g:NERDTreeMapPreviewSplit = 'gs'
+let g:NERDTreeMapOpenVSplit = 'v'
+let g:NERDTreeMapPreviewVSplit = 'gv'
 
 " Tagbar
 " ------
