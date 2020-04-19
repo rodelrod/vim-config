@@ -228,11 +228,10 @@ imap <S-C-V> <Esc>"+p
 vmap <S-C-V> "+p
 
 " Insert date and time stamp 
-" 28/02/2008 changed from <F11> to <S-F11> because <F11> is taken over
-" by the terminal in xfce-terminal
-imap <S-F11> <C-R>=strftime("%d/%m/%Y")<CR>
-nmap <S-F11> i<C-R>=strftime("%d/%m/%Y")<CR><Esc> 
-
+" I can't use <C-;> because it does not get passed as a separate sequence in
+" the terminal.
+imap <F5> <C-R>=strftime("[%Y-%d-%m %H:%M]")<CR>
+nmap <F5> i<C-R>=strftime("[%Y-%d-%m %H:%M]")<CR><Esc> 
 "  Remove search results highlighting
 " 'a' and 'h' return to original cursor position
 map <F3> :set hls!<CR>
