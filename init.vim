@@ -1,1 +1,0 @@
-/home/rodelrod/.vimrc
