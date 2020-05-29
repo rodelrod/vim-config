@@ -1,10 +1,16 @@
-vim-config
-==========
+# vim-config
 
 Vim configuration files: vimrc, plugins, syntax enhacements etc.
 
-Installation
-------------
+# Installation
+
+## Setting up the symlinks
+
+```bash
+cd ~/.dotfiles && stow vim-config
+```
+
+## Plugin Management
 
 I use [Vundle](https://github.com/VundleVim/Vundle.vim) to manage plugins. Git clone Vundle.vim into `bundle/`, then run vim and `:PluginInstall`
 
@@ -12,20 +18,19 @@ I use [Vundle](https://github.com/VundleVim/Vundle.vim) to manage plugins. Git c
 git clone https://github.com/VundleVim/Vundle.vim.git bundle/Vundle.vim
 ```
 
-Usage
------
+# Usage
 
-For Syntastic to do its job, install `flake8` in the virtualenv, the start
+For Syntastic to do its job, install `flake8` and `mypy` in the virtualenv, the start
 active mode with <F9>.
 
 ```bash
-pip install flake8
+pip install flake8 mypy
 ```
 
 Alternatively you can also you pylint (heavier and more verbose).
 
-Plugins
--------
+
+# Plugin Examples
 
 To browse the filesystem:
  - NERDTree (CTRL-w CTRL-e)
