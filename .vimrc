@@ -98,9 +98,9 @@ endif
 
 " Make sure we start in the correct directory when launching gvim from
 " Nautilus 
-if has("gui_running")
-    cd %:h
-endif
+"if has("gui_running")
+    "cd %:h
+"endif
 "}}}
 
 "-------------------------------------------------------
