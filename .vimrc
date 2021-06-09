@@ -46,8 +46,7 @@ Plugin 'dense-analysis/ale'
 Plugin 'hashivim/vim-terraform'
 
 " Tags
-Plugin 'xolox/vim-misc'
-Plugin 'xolox/vim-easytags'
+Plugin 'ludovicchabant/vim-gutentags'
 Plugin 'majutsushi/tagbar'
 
 " Snipmate
@@ -330,10 +329,6 @@ let g:syntastic_mode_map = { 'mode': 'passive',
 						   \ 'passive_filetypes': [] }
 let g:syntastic_python_checkers = ['flake8', 'mypy']
 
-" Easytags
-" --------
-" Dynamic highlighting seems worthless to me
-let g:easytags_auto_highlight = 0
 
 " Jedi
 " ----
