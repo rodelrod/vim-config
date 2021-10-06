@@ -28,7 +28,7 @@ Plugin 'jremmen/vim-ripgrep'
 Plugin 'derekwyatt/vim-scala'
 Plugin 'hynek/vim-python-pep8-indent'
 Plugin 'vim-python/python-syntax'     "until semshi is available for vim
-Plugin 'bling/vim-airline'
+Plugin 'vim-airline/vim-airline'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'mxw/vim-jsx'
 Plugin 'othree/html5.vim'
@@ -82,17 +82,17 @@ filetype plugin indent on    " required
 colorscheme PaperColor
 set background=dark
 if $TERM == "screen"
-	" Screen sends terminal codes transparently, so you need to tell
-	" vim what is your base terminal (I was having a bug with S-<Fx>)
-	set term=xterm
-	colorscheme xterm16  " 16-colors colorsheme 
+    " Screen sends terminal codes transparently, so you need to tell
+    " vim what is your base terminal (I was having a bug with S-<Fx>)
+    set term=xterm
+    colorscheme xterm16  " 16-colors colorsheme 
 elseif $TERM == "screen-256color" && !has('nvim')
     " Make mouse smoother and more stable on tmux (esp. window resizing)
     set ttymouse=xterm2
 elseif $COLORTERM == "gnome-terminal"
-	" 256-colors colorscheme for gnome-terminal
-	" (the term string is hard-coded for this one, we can't set it)
-	set t_Co=256
+    " 256-colors colorscheme for gnome-terminal
+    " (the term string is hard-coded for this one, we can't set it)
+    set t_Co=256
 endif
 
 " Make sure we start in the correct directory when launching gvim from
@@ -107,11 +107,11 @@ endif
 " ------------------------------------------------------
 set tabstop=4
 set shiftwidth=4
-set expandtab		"the cases when I don't want this are much rarer
+set expandtab        "the cases when I don't want this are much rarer
 set autoindent
 set fileencodings=ucs-bom,utf-8,latin1
-set guioptions-=T 	"gets rid of the toolbar
-set vb t_vb=		"replaces beep for flash for wrong commands
+set guioptions-=T     "gets rid of the toolbar
+set vb t_vb=        "replaces beep for flash for wrong commands
 "set virtualedit=all 
 set modeline
 set number
@@ -302,12 +302,18 @@ let g:tagbar_sort = 0
 " vim-airline
 " --------
 if has('win32')
-	let g:airline_powerline_fonts = 0
+    let g:airline_powerline_fonts = 0
 else
-	let g:airline_powerline_fonts = 1
+    let g:airline_powerline_fonts = 1
 endif
 " turn off warnings for trailing whitespace ('trailing')
 let g:airline#extensions#whitespace#checks = [ 'indent', 'long' ]
+" clean up symbols a bit
+let g:airline_symbols = {}    " dictionary has to be defined here to prevent errors
+let g:airline_symbols.maxlinenr=' '
+let g:airline_symbols.linenr=' ☰ '
+let g:airline_symbols.colnr=' Co:'
+
 set laststatus=2
 
 " NERDcommenter
@@ -325,8 +331,8 @@ nnoremap <silent> <f9> :SyntasticToggleMode<cr>
 "detected, and closed when none are detected.
 let g:syntastic_auto_loc_list=1
 let g:syntastic_mode_map = { 'mode': 'passive',
-						   \ 'active_filetypes': ['python'],
-						   \ 'passive_filetypes': [] }
+                           \ 'active_filetypes': ['python'],
+                           \ 'passive_filetypes': [] }
 let g:syntastic_python_checkers = ['flake8', 'mypy']
 
 
@@ -346,7 +352,8 @@ autocmd FileType python setlocal completeopt-=preview
 
 " Vim-Pyenv
 " ---------
-" Allows Jedi to work with the correct Python version under pyenv and virtualenv
+" Allows Jedi to work with the correct Python version under pyenv and
+" virtualenv
 if jedi#init_python()
   function! s:jedi_auto_force_py_version() abort
     let g:jedi#force_py_version = pyenv#python#get_internal_major_version()
