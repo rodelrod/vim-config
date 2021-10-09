@@ -20,6 +20,8 @@ git clone https://github.com/VundleVim/Vundle.vim.git bundle/Vundle.vim
 
 # Usage
 
+## Syntastic
+
 For Syntastic to do its job, install `flake8` and `mypy` in the virtualenv, the start
 active mode with <F9>.
 
@@ -30,30 +32,10 @@ pip install flake8 mypy
 Alternatively you can also you pylint (heavier and more verbose).
 
 
-# Plugin Examples
+## Keybindings
 
 To browse the filesystem:
  - NERDTree (CTRL-w CTRL-e)
 
 To browse the tags:
  - Tagbar (CTRL-w CTRL-r)
-
-Solid plugins I feel I'll be using for a long time:
- - Fugitive
- - Surround
- - Airline
- - Syntastic
- - Easytags
- - NERDcommenter
- - vim-python-pep8-indent (indent python like intelliJ Idea)
- - Ack
- - CtrlP
- - Emmet
- - Easytags
-
-Stuff I might or might not use:
- - Snipmate
-
-Stuff I ended up uninstalling because I didn't really use:
- - Rope/Ropevim
-
