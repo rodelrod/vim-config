@@ -390,5 +390,11 @@ let g:python_highlight_operators = 0   "I don't like the highlighted '='
 let g:snipMate = { 'snippet_version' : 1 }
 
 
+" Vim-gutentags
+" -------------
+" Necessary because emacs on nix clobbers the ctags executable:
+let g:gutentags_ctags_executable = '/usr/bin/ctags'
+
+
 
 " vim:fdm=marker
