@@ -323,6 +323,8 @@ set laststatus=2
 map <C-_> <plug>NERDCommenterToggle
 " keep the old <F8> comment mapping for GVim (GVim can't see <C-/>)
 map <F8> <plug>NERDCommenterToggle
+" also map the comment shortcut for emacs/evil <g c>
+map gc <plug>NERDCommenterToggle
 
 " Syntastic
 " ---------
